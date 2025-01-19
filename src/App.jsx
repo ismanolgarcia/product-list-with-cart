@@ -3,6 +3,7 @@ import { Cart } from './components/Cart';
 import data from '../data.json';
 
 export const App = () => {
+
   return (
     <main className="p-5 lg:p-20 bg-rose-100 flex justify-center flex-col md:flex-row lg:gap-0 gap-20">
       <div className="w-[100%]  2xl:w-[60%]">

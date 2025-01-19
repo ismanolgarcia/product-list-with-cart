@@ -1,7 +1,13 @@
-import { AddToCart } from './AddToCart';
-
 /* eslint-disable react/prop-types */
+import { useContext } from 'react';
+import { AddToCart } from './AddToCart';
+import { CartContext } from '../context/CartContext';
+
 export const Card = ({ imageUrl, name, category, price }) => {
+  const { isInCart } = useContext(CartContext);
+
+  const selected = isInCart(name);
+
   return (
     <div className=" ">
       <picture className="flex flex-col items-center">
@@ -10,9 +16,11 @@ export const Card = ({ imageUrl, name, category, price }) => {
         <img
           src={imageUrl.mobile}
           alt={name}
-          className="h-64 object-contain rounded-lg"
+          className={`h-64 object-contain rounded-lg ${
+            selected ? 'border-red border-2' : ''
+          } `}
         />
-        <AddToCart />
+        <AddToCart name={name} category={category} price={price} />
       </picture>
       <div className="mt-4">
         <p className="text-sm text-rose-500">{category}</p>
