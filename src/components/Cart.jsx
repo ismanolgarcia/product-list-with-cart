@@ -1,17 +1,12 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import iconodm from '../assets/images/icon-carbon-neutral.svg';
 import { Button } from './Button';
+import { ConfirmOrder } from './ConfirmOrder';
 export const Cart = () => {
-  const { cart, removeFromCart } = useContext(CartContext);
-  const totalQuantity = cart.reduce(
-    (acc, producto) => acc + producto.quantity,
-    0
-  );
-  const orderTotal = cart.reduce(
-    (acc, producto) => acc + producto.price * producto.quantity,
-    0
-  );
+  const [isModalOpen, setModalOpen] = useState(false);
+  const { cart, removeFromCart, totalQuantity, orderTotal } =
+    useContext(CartContext);
 
   return (
     <div className="md:w-[460px] w-full h-full bg-white p-8 rounded-lg">
@@ -30,29 +25,29 @@ export const Cart = () => {
             </p>
           </div>
         ) : (
-          cart.map((producto) => (
+          cart.map((product) => (
             <div
-              key={producto.key}
+              key={product.key}
               className="flex  justify-between w-full border-b py-2 items-center"
             >
               <div className="flex flex-col gap-1">
                 <div className="text-rose-900 font-semibold">
-                  {producto.name}
+                  {product.name}
                 </div>
                 <div className="flex gap-10">
                   <span className="text-red font-bold">
-                    x {producto.quantity}
+                    x {product.quantity}
                   </span>
                   <span className="text-gray-500">
-                    @ ${producto.price.toFixed(2)} $
+                    @ ${product.price.toFixed(2)} $
                   </span>
                   <span className="text-rose-400 font-bold">
-                    {(producto.price * producto.quantity).toFixed(2)}
+                    {(product.price * product.quantity).toFixed(2)}
                   </span>
                 </div>
               </div>
               <button
-                onClick={() => removeFromCart(producto.key)}
+                onClick={() => removeFromCart(product.key)}
                 className="flex justify-center items-center border rounded-full text-gray-400 border-gray-400  hover:border-black h-6 w-6 cursor-pointer hover:text-black select-none"
               >
                 x
@@ -60,7 +55,6 @@ export const Cart = () => {
             </div>
           ))
         )}
-
         {cart.length >= 1 ? (
           <>
             <div className="flex w-full  justify-between items-center">
@@ -73,11 +67,15 @@ export const Cart = () => {
               <img src={iconodm} alt="" />
               <p className="text-gray-600">
                 This is a{' '}
-                <span className="font-bold text-rose-900">carbon-neutral </span>
+                <span className="font-bold text-rose-900">carbon-neutral</span>
                 delivery
               </p>
             </div>
-            <Button text="Confirm Order" />
+            <ConfirmOrder
+              isOpen={isModalOpen}
+              onClose={() => setModalOpen(false)}
+            />
+            <Button text="Confirm Order" action={() => setModalOpen(true)} />
           </>
         ) : (
           <></>

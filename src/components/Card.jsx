@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useContext } from 'react';
 import { AddToCart } from './AddToCart';
 import { CartContext } from '../context/CartContext';
@@ -9,7 +8,7 @@ export const Card = ({ imageUrl, name, category, price }) => {
   const selected = isInCart(name);
 
   return (
-    <div className=" ">
+    <div>
       <picture className="flex flex-col items-center">
         <source srcSet={imageUrl.desktop} media="(min-width: 1280px)" />
         <source srcSet={imageUrl.tablet} media="(min-width: 785px)" />
@@ -20,7 +19,12 @@ export const Card = ({ imageUrl, name, category, price }) => {
             selected ? 'border-red border-2' : ''
           } `}
         />
-        <AddToCart name={name} category={category} price={price} />
+        <AddToCart
+          name={name}
+          category={category}
+          price={price}
+          image={imageUrl.thumbnail}
+        />
       </picture>
       <div className="mt-4">
         <p className="text-sm text-rose-500">{category}</p>

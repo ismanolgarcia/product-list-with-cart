@@ -1,7 +1,9 @@
-/* eslint-disable react/prop-types */
-export const Button = ({ text }) => {
+export const Button = ({ text, action }) => {
   return (
-    <button className="bg-red hover:bg-redDark w-full p-4 rounded-3xl font-medium text-rose-50">
+    <button
+      onClick={action}
+      className="bg-red hover:bg-redDark w-full p-4 rounded-3xl font-medium text-rose-50"
+    >
       {text}
     </button>
   );
