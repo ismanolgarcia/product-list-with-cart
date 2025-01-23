@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import { Modal } from './Modal';
 import { Button } from './Button';
-import iconOrder from '../assets/images/icon-order-confirmed.svg';
 
 export const ConfirmOrder = ({ isOpen, onClose }) => {
   const { cart, orderTotal, clearCart } = useContext(CartContext);
@@ -10,7 +9,11 @@ export const ConfirmOrder = ({ isOpen, onClose }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <div className="flex flex-col gap-2 mb-6">
-        <img src={iconOrder} alt="" className="w-10" />
+        <img
+          src="/icon-order-confirmed.svg"
+          alt="icon-order-confirmed"
+          className="w-10"
+        />
         <h2 className="font-bold text-2xl">Order Confirmed</h2>
         <span className="text-sm">We hope you enjoy your food!</span>
       </div>
@@ -47,7 +50,7 @@ export const ConfirmOrder = ({ isOpen, onClose }) => {
         ))}
       </div>
       <div className="flex w-full  justify-between items-center h-10 bg-rose-50 p-6 mb-6">
-        <p className='text-sm'>Order Total: </p>
+        <p className="text-sm">Order Total: </p>
         <span className="text-rose-900 font-bold text-sm mr-4">
           ${orderTotal.toFixed(2)}
         </span>

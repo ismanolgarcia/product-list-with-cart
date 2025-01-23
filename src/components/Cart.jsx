@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
-import iconodm from '../assets/images/icon-carbon-neutral.svg';
 import { Button } from './Button';
 import { ConfirmOrder } from './ConfirmOrder';
 export const Cart = () => {
@@ -16,10 +15,7 @@ export const Cart = () => {
       <div className="flex flex-col  gap-4 mt-5  items-center ">
         {cart.length === 0 ? (
           <div className=" flex flex-col justify-center items-center text-sm text-gray-500">
-            <img
-              src="/src/assets/images/illustration-empty-cart.svg"
-              alt="Empty Cart"
-            />
+            <img src="/illustration-empty-cart.svg" alt="Empty Cart" />
             <p className="text-sm text-rose-500">
               Your added items will appear here
             </p>
@@ -64,7 +60,7 @@ export const Cart = () => {
               </span>
             </div>
             <div className="flex items-center justify-center bg-rose-100 w-full h-14 rounded-lg gap-2">
-              <img src={iconodm} alt="" />
+              <img src="/icon-carbon-neutral.svg" alt="icon-carbon-neutral" />
               <p className="text-gray-600">
                 This is a{' '}
                 <span className="font-bold text-rose-900">carbon-neutral</span>

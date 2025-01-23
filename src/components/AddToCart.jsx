@@ -30,7 +30,7 @@ export const AddToCart = ({ name, category, price, image }) => {
       {number == 0 ? (
         <>
           <img
-            src="/src/assets/images/icon-add-to-cart.svg"
+            src="/icon-add-to-cart.svg"
             alt="add-to-cart"
           />
           <p>Add to Cart</p>
